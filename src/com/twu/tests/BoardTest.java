@@ -3,11 +3,9 @@ package com.twu.tests;
 import com.twu.src.Board;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
-
 import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

@@ -10,6 +10,8 @@ public class Board {
 
     private PrintStream printStream;
     private Map<String, String> boardMap;
+    private final int maxNumberOfValidMoves = 9;
+    private int validMoveCounter = 0;
 
     public Board(PrintStream printStream, Map<String, String> boardMap) {
         this.printStream = printStream;
@@ -35,9 +37,14 @@ public class Board {
     public boolean addMoveToBoard(String playerSymbol, String playerInput) {
         if (!boardMap.containsKey(playerInput)) {
             boardMap.put(playerInput, playerSymbol);
+            validMoveCounter++;
             return true;
         } else {
             return false;
         }
+    }
+
+    public boolean isFull() {
+        return validMoveCounter == maxNumberOfValidMoves;
     }
 }

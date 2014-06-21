@@ -12,27 +12,53 @@ public class TicTacToeRunner {
     private PrintStream printStream;
     private BufferedReader reader;
     private Board board;
+    private Player playerOne, playerTwo;
 
-    public TicTacToeRunner(PrintStream printStream, BufferedReader reader, Board board) {
+    public TicTacToeRunner(PrintStream printStream, BufferedReader reader, Board board, Player playerOne, Player playerTwo) {
         this.printStream = printStream;
         this.reader = reader;
         this.board = board;
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
     }
 
     public void go() throws IOException {
         board.printBoard();
 
-        printStream.print("Player One, enter your move: ");
-        Player playerOne = new Player("X", board);
-        String playerOneLocation = reader.readLine();
-        playerOne.makeMove(playerOneLocation);
-        board.printBoard();
 
-        printStream.print("Player Two, enter your move: ");
-        Player playerTwo = new Player("O", board);
-        String playerTwoLocation = reader.readLine();
-        playerTwo.makeMove(playerTwoLocation);
-        board.printBoard();
+        while (true) {
+            boolean validMoveMade;
+            while (true) {
+                printStream.print("Player One, enter your move: ");
+                validMoveMade = playerOne.makeMove();
+                if (validMoveMade) {
+                    board.printBoard();
+                    break;
+                } else {
+                    printStream.println("Location already taken");
+                }
+            }
+
+            if (board.isFull()) {
+                break;
+            }
+
+            while (true) {
+                printStream.print("Player Two, enter your move: ");
+                validMoveMade = playerTwo.makeMove();
+                if (validMoveMade) {
+                    board.printBoard();
+                    break;
+                } else {
+                    printStream.println("Location already taken");
+                }
+            }
+
+            if (board.isFull()) {
+                break;
+            }
+        }
+        printStream.println("Game is a draw");
     }
 
 }
