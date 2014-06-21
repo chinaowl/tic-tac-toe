@@ -1,6 +1,5 @@
 package com.twu.src;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
@@ -10,14 +9,14 @@ import java.io.PrintStream;
 public class TicTacToeRunner {
 
     private PrintStream printStream;
-    private BufferedReader reader;
     private Board board;
+    private TurnManager turnManager;
     private Player playerOne, playerTwo;
 
-    public TicTacToeRunner(PrintStream printStream, BufferedReader reader, Board board, Player playerOne, Player playerTwo) {
+    public TicTacToeRunner(PrintStream printStream, Board board, TurnManager turnManager, Player playerOne, Player playerTwo) {
         this.printStream = printStream;
-        this.reader = reader;
         this.board = board;
+        this.turnManager = turnManager;
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
     }
@@ -25,35 +24,13 @@ public class TicTacToeRunner {
     public void go() throws IOException {
         board.printBoard();
 
-
         while (true) {
-            boolean validMoveMade;
-            while (true) {
-                printStream.print("Player One, enter your move: ");
-                validMoveMade = playerOne.makeMove();
-                if (validMoveMade) {
-                    board.printBoard();
-                    break;
-                } else {
-                    printStream.println("Location already taken");
-                }
-            }
-
+            turnManager.takeTurn(playerOne);
             if (board.isFull()) {
                 break;
             }
 
-            while (true) {
-                printStream.print("Player Two, enter your move: ");
-                validMoveMade = playerTwo.makeMove();
-                if (validMoveMade) {
-                    board.printBoard();
-                    break;
-                } else {
-                    printStream.println("Location already taken");
-                }
-            }
-
+            turnManager.takeTurn(playerTwo);
             if (board.isFull()) {
                 break;
             }

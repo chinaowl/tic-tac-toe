@@ -3,6 +3,7 @@ package com.twu.tests;
 import com.twu.src.Board;
 import com.twu.src.Player;
 import com.twu.src.TicTacToeRunner;
+import com.twu.src.TurnManager;
 import org.junit.Before;
 import org.junit.Test;
 import java.io.BufferedReader;
@@ -17,6 +18,7 @@ public class TicTacToeRunnerTest {
     private PrintStream printStream;
     private BufferedReader reader;
     private Board board;
+    private TurnManager turnManager;
     private Player playerOne, playerTwo;
     private TicTacToeRunner runner;
 
@@ -25,26 +27,17 @@ public class TicTacToeRunnerTest {
         printStream = mock(PrintStream.class);
         reader = mock(BufferedReader.class);
         board = mock(Board.class);
+        turnManager = mock(TurnManager.class);
         playerOne = mock(Player.class);
         playerTwo = mock(Player.class);
-        runner = new TicTacToeRunner(printStream, reader, board, playerOne, playerTwo);
+        runner = new TicTacToeRunner(printStream, board, turnManager, playerOne, playerTwo);
     }
 
     @Test
-    public void shouldAskPlayerOneForMove() throws IOException {
+    public void shouldPrintGameIsADrawWhenLoopEnds() throws IOException {
         when(board.isFull()).thenReturn(true);
-        when(playerOne.makeMove()).thenReturn(true);
         runner.go();
-        verify(printStream).print("Player One, enter your move: ");
-    }
-
-    @Test
-    public void shouldAskPlayerTwoForMove() throws IOException {
-        when(board.isFull()).thenReturn(false).thenReturn(true);
-        when(playerOne.makeMove()).thenReturn(true);
-        when(playerTwo.makeMove()).thenReturn(true);
-        runner.go();
-        verify(printStream).print("Player Two, enter your move: ");
+        verify(printStream).println("Game is a draw");
     }
 
 

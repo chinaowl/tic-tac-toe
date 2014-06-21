@@ -10,11 +10,13 @@ public class Player {
 
     private BufferedReader reader;
     private final String symbol;
+    private final String number;
     private Board board;
 
-    public Player(BufferedReader reader, String symbol, Board board) {
+    public Player(BufferedReader reader, String symbol, String number, Board board) {
         this.reader = reader;
         this.symbol = symbol;
+        this.number = number;
         this.board = board;
     }
 
@@ -25,5 +27,9 @@ public class Player {
         } else {
             return false;
         }
+    }
+
+    public String getNumber() {
+        return number;
     }
 }

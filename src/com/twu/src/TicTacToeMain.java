@@ -14,9 +14,10 @@ public class TicTacToeMain {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Map<String, String> boardMap = new HashMap<String, String>();
         Board board = new Board(printStream, boardMap);
-        Player playerOne = new Player(reader, "X", board);
-        Player playerTwo = new Player(reader, "O", board);
-        TicTacToeRunner runner = new TicTacToeRunner(printStream, reader, board, playerOne, playerTwo);
+        TurnManager turnManager = new TurnManager(printStream, board);
+        Player playerOne = new Player(reader, "X", "One", board);
+        Player playerTwo = new Player(reader, "O", "Two", board);
+        TicTacToeRunner runner = new TicTacToeRunner(printStream, board, turnManager, playerOne, playerTwo);
         runner.go();
     }
 }
