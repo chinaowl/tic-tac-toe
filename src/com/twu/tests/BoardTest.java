@@ -81,4 +81,28 @@ public class BoardTest {
         assertFalse(board.addMoveToBoard("Y", "1"));
     }
 
+    @Test
+    public void playerShouldWinWithThreeInARow() {
+        board.addMoveToBoard("X", "1");
+        board.addMoveToBoard("X", "2");
+        board.addMoveToBoard("X", "3");
+        assertTrue(board.playerHasWon("X"));
+    }
+
+    @Test
+    public void playerShouldWinWithThreeInACol() {
+        board.addMoveToBoard("X", "1");
+        board.addMoveToBoard("X", "4");
+        board.addMoveToBoard("X", "7");
+        assertTrue(board.playerHasWon("X"));
+    }
+
+    @Test
+    public void playerShouldWinWithThreeInADiagonal() {
+        board.addMoveToBoard("X", "1");
+        board.addMoveToBoard("X", "5");
+        board.addMoveToBoard("X", "9");
+        assertTrue(board.playerHasWon("X"));
+    }
+
 }

@@ -33,6 +33,4 @@ public class PlayerTest {
         verify(mockBoard).addMoveToBoard(playerSymbol, playerInput);
     }
 
-
-
 }

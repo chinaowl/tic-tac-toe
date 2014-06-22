@@ -57,4 +57,16 @@ public class Board {
     public boolean isFull() {
         return validMoveCounter == maxNumberOfValidMoves;
     }
+
+    public boolean playerHasWon(String playerSymbol) {
+        return (getBoardSymbol("1").equals(playerSymbol) && getBoardSymbol("2").equals(playerSymbol) && getBoardSymbol("3").equals(playerSymbol))
+                || (getBoardSymbol("4").equals(playerSymbol) && getBoardSymbol("5").equals(playerSymbol) && getBoardSymbol("6").equals(playerSymbol))
+                || (getBoardSymbol("7").equals(playerSymbol) && getBoardSymbol("8").equals(playerSymbol) && getBoardSymbol("9").equals(playerSymbol))
+                || (getBoardSymbol("1").equals(playerSymbol) && getBoardSymbol("4").equals(playerSymbol) && getBoardSymbol("7").equals(playerSymbol))
+                || (getBoardSymbol("2").equals(playerSymbol) && getBoardSymbol("5").equals(playerSymbol) && getBoardSymbol("8").equals(playerSymbol))
+                || (getBoardSymbol("3").equals(playerSymbol) && getBoardSymbol("6").equals(playerSymbol) && getBoardSymbol("9").equals(playerSymbol))
+                || (getBoardSymbol("1").equals(playerSymbol) && getBoardSymbol("5").equals(playerSymbol) && getBoardSymbol("9").equals(playerSymbol))
+                || (getBoardSymbol("3").equals(playerSymbol) && getBoardSymbol("5").equals(playerSymbol) && getBoardSymbol("7").equals(playerSymbol));
+    }
+
 }
