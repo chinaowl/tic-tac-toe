@@ -26,9 +26,15 @@ public class Board {
     }
 
     private void initializeValidWinsList() {
-        validWins = new ArrayList<ThreeInARow>();
         ThreeInARow row1 = new ThreeInARow(Arrays.asList("1", "2", "3"));
-        validWins.add(row1);
+        ThreeInARow row2 = new ThreeInARow(Arrays.asList("4", "5", "6"));
+        ThreeInARow row3 = new ThreeInARow(Arrays.asList("7", "8", "9"));
+        ThreeInARow col1 = new ThreeInARow(Arrays.asList("1", "4", "7"));
+        ThreeInARow col2 = new ThreeInARow(Arrays.asList("2", "5", "8"));
+        ThreeInARow col3 = new ThreeInARow(Arrays.asList("3", "6", "9"));
+        ThreeInARow diagonal1 = new ThreeInARow(Arrays.asList("1", "5", "9"));
+        ThreeInARow diagonal2 = new ThreeInARow(Arrays.asList("3", "5", "7"));
+        validWins = new ArrayList<ThreeInARow>(Arrays.asList(row1, row2, row3, col1, col2, col3, diagonal1, diagonal2));
     }
 
     private void initializeValidMovesList() {
