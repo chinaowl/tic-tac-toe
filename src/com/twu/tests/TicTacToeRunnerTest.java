@@ -1,7 +1,7 @@
 package com.twu.tests;
 
 import com.twu.src.Board;
-import com.twu.src.Player;
+import com.twu.src.HumanPlayer;
 import com.twu.src.TicTacToeRunner;
 import com.twu.src.TurnManager;
 import org.junit.Before;
@@ -19,7 +19,7 @@ public class TicTacToeRunnerTest {
     private BufferedReader mockReader;
     private Board mockBoard;
     private TurnManager mockTurnManager;
-    private Player mockPlayerOne, mockPlayerTwo;
+    private HumanPlayer mockPlayerOne, mockPlayerTwo;
     private TicTacToeRunner runner;
 
     @Before
@@ -28,13 +28,20 @@ public class TicTacToeRunnerTest {
         mockReader = mock(BufferedReader.class);
         mockBoard = mock(Board.class);
         mockTurnManager = mock(TurnManager.class);
-        mockPlayerOne = mock(Player.class);
-        mockPlayerTwo = mock(Player.class);
+        mockPlayerOne = mock(HumanPlayer.class);
+        mockPlayerTwo = mock(HumanPlayer.class);
         runner = new TicTacToeRunner(mockPrintStream, mockBoard, mockTurnManager, mockPlayerOne, mockPlayerTwo);
     }
 
     @Test
-    public void shouldPrintGameIsADrawWhenLoopEnds() throws IOException {
+    public void shouldPrintPlayerOneHasWon() throws IOException {
+        when(mockBoard.playerHasWon(mockPlayerOne.getSymbol())).thenReturn(true);
+        runner.go();
+        verify(mockPrintStream).println("Player null wins!");
+    }
+
+    @Test
+    public void shouldPrintGameIsADrawWhenBoardIsFull() throws IOException {
         when(mockBoard.isFull()).thenReturn(true);
         runner.go();
         verify(mockPrintStream).println("Game is a draw");

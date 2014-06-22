@@ -23,19 +23,28 @@ public class TicTacToeRunner {
 
     public void go() throws IOException {
         board.printBoard();
+        String finalMessage = "Game is a draw";
 
         while (true) {
             turnManager.takeTurn(playerOne);
+            if (board.playerHasWon(playerOne.getSymbol())) {
+                finalMessage = "Player " + playerOne.getNumber() + " wins!";
+                break;
+            }
             if (board.isFull()) {
                 break;
             }
 
             turnManager.takeTurn(playerTwo);
+            if (board.playerHasWon(playerTwo.getSymbol())) {
+                finalMessage = "Player " + playerTwo.getNumber() + " wins!";
+                break;
+            }
             if (board.isFull()) {
                 break;
             }
         }
-        printStream.println("Game is a draw");
+        printStream.println(finalMessage);
     }
 
 }

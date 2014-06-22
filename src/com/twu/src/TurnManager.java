@@ -22,6 +22,7 @@ public class TurnManager {
             printStream.print("Player " + player.getNumber() + ", enter your move: ");
             validMoveMade = player.makeMove();
             if (validMoveMade) {
+                printStream.println();
                 board.printBoard();
                 break;
             } else {

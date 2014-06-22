@@ -15,8 +15,8 @@ public class TicTacToeMain {
         Map<String, String> boardMap = new HashMap<String, String>();
         Board board = new Board(printStream, boardMap);
         TurnManager turnManager = new TurnManager(printStream, board);
-        Player playerOne = new Player(reader, "X", "One", board);
-        Player playerTwo = new Player(reader, "O", "Two", board);
+        Player playerOne = new HumanPlayer(reader, "X", "One", board);
+        Player playerTwo = new ComputerPlayer("O", "Two", board);
         TicTacToeRunner runner = new TicTacToeRunner(printStream, board, turnManager, playerOne, playerTwo);
         runner.go();
     }

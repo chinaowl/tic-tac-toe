@@ -1,7 +1,7 @@
 package com.twu.tests;
 
 import com.twu.src.Board;
-import com.twu.src.Player;
+import com.twu.src.HumanPlayer;
 import org.junit.Before;
 import org.junit.Test;
 import java.io.BufferedReader;
@@ -10,11 +10,11 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class PlayerTest {
+public class HumanPlayerTest {
 
     private BufferedReader mockReader;
     private Board mockBoard;
-    private Player player;
+    private HumanPlayer player;
     private final String playerSymbol = "X";
     private final String playerInput = "1";
 
@@ -23,7 +23,7 @@ public class PlayerTest {
     public void setUp() {
         mockReader = mock(BufferedReader.class);
         mockBoard = mock(Board.class);
-        player = new Player(mockReader, playerSymbol, "1", mockBoard);
+        player = new HumanPlayer(mockReader, playerSymbol, "1", mockBoard);
     }
 
     @Test

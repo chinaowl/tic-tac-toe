@@ -59,14 +59,26 @@ public class Board {
     }
 
     public boolean playerHasWon(String playerSymbol) {
-        return (getBoardSymbol("1").equals(playerSymbol) && getBoardSymbol("2").equals(playerSymbol) && getBoardSymbol("3").equals(playerSymbol))
-                || (getBoardSymbol("4").equals(playerSymbol) && getBoardSymbol("5").equals(playerSymbol) && getBoardSymbol("6").equals(playerSymbol))
-                || (getBoardSymbol("7").equals(playerSymbol) && getBoardSymbol("8").equals(playerSymbol) && getBoardSymbol("9").equals(playerSymbol))
-                || (getBoardSymbol("1").equals(playerSymbol) && getBoardSymbol("4").equals(playerSymbol) && getBoardSymbol("7").equals(playerSymbol))
-                || (getBoardSymbol("2").equals(playerSymbol) && getBoardSymbol("5").equals(playerSymbol) && getBoardSymbol("8").equals(playerSymbol))
-                || (getBoardSymbol("3").equals(playerSymbol) && getBoardSymbol("6").equals(playerSymbol) && getBoardSymbol("9").equals(playerSymbol))
-                || (getBoardSymbol("1").equals(playerSymbol) && getBoardSymbol("5").equals(playerSymbol) && getBoardSymbol("9").equals(playerSymbol))
-                || (getBoardSymbol("3").equals(playerSymbol) && getBoardSymbol("5").equals(playerSymbol) && getBoardSymbol("7").equals(playerSymbol));
+        return checkRow("1", "2", "3", playerSymbol)
+                || checkRow("4", "5", "6", playerSymbol)
+                || checkRow("7", "8", "9", playerSymbol)
+                || checkRow("1", "4", "7", playerSymbol)
+                || checkRow("2", "5", "8", playerSymbol)
+                || checkRow("3", "6", "9", playerSymbol)
+                || checkRow("1", "5", "9", playerSymbol)
+                || checkRow("3", "5", "7", playerSymbol);
     }
 
+    private boolean checkRow(String one, String two, String three, String playerSymbol) {
+        return getBoardSymbol(one).equals(playerSymbol) && getBoardSymbol(two).equals(playerSymbol) && getBoardSymbol(three).equals(playerSymbol);
+    }
+
+    public String getFirstEmptyLocation() {
+        for (String location : validMoves) {
+            if (!boardMap.containsKey(location)) {
+                return location;
+            }
+        }
+        return null;
+    }
 }
