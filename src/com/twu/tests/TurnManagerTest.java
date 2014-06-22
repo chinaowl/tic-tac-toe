@@ -2,6 +2,7 @@ package com.twu.tests;
 
 import com.twu.src.Board;
 import com.twu.src.HumanPlayer;
+import com.twu.src.Player;
 import com.twu.src.TurnManager;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +17,7 @@ public class TurnManagerTest {
     private PrintStream mockPrintStream;
     private Board mockBoard;
     private TurnManager turnManager;
-    private HumanPlayer mockPlayer;
+    private Player mockPlayer;
 
     @Before
     public void setUp() {

@@ -18,7 +18,7 @@ public class ComputerPlayer implements Player {
     @Override
     public boolean makeMove() {
         String location = board.getFirstEmptyLocation();
-        return board.addMoveToBoard(symbol, location);
+        return board.addMoveToBoard(location, symbol);
     }
 
     @Override

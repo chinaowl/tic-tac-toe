@@ -23,7 +23,7 @@ public class HumanPlayer implements Player {
     @Override
     public boolean makeMove() throws IOException {
         String location = reader.readLine();
-        return board.addMoveToBoard(symbol, location);
+        return board.addMoveToBoard(location, symbol);
     }
 
     @Override

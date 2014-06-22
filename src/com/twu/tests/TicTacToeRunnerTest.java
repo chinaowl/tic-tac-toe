@@ -1,9 +1,6 @@
 package com.twu.tests;
 
-import com.twu.src.Board;
-import com.twu.src.HumanPlayer;
-import com.twu.src.TicTacToeRunner;
-import com.twu.src.TurnManager;
+import com.twu.src.*;
 import org.junit.Before;
 import org.junit.Test;
 import java.io.BufferedReader;
@@ -19,7 +16,7 @@ public class TicTacToeRunnerTest {
     private BufferedReader mockReader;
     private Board mockBoard;
     private TurnManager mockTurnManager;
-    private HumanPlayer mockPlayerOne, mockPlayerTwo;
+    private Player mockPlayerOne, mockPlayerTwo;
     private TicTacToeRunner runner;
 
     @Before

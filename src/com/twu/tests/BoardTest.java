@@ -48,7 +48,7 @@ public class BoardTest {
 
     @Test
     public void shouldAddMoveToBoardAtLocation1() {
-        board.addMoveToBoard("X", "1");
+        board.addMoveToBoard("1", "X");
         assertEquals("X", boardMap.get("1"));
     }
 
@@ -65,43 +65,43 @@ public class BoardTest {
 
     @Test
     public void shouldPreventAddingMovesTwiceToSameLocation() {
-        board.addMoveToBoard("X", "1");
-        board.addMoveToBoard("Y", "1");
+        board.addMoveToBoard("1", "X");
+        board.addMoveToBoard("1", "Y");
         assertEquals("X", board.getBoardSymbol("1"));
     }
 
     @Test
     public void validAddMoveShouldReturnTrue() {
-        assertTrue(board.addMoveToBoard("X", "1"));
+        assertTrue(board.addMoveToBoard("1", "X"));
     }
 
     @Test
     public void invalidAddMoveShouldReturnFalse() {
-        board.addMoveToBoard("X", "1");
-        assertFalse(board.addMoveToBoard("Y", "1"));
+        board.addMoveToBoard("1", "X");
+        assertFalse(board.addMoveToBoard("1", "Y"));
     }
 
     @Test
     public void playerShouldWinWithThreeInARow() {
-        board.addMoveToBoard("X", "1");
-        board.addMoveToBoard("X", "2");
-        board.addMoveToBoard("X", "3");
+        board.addMoveToBoard("1", "X");
+        board.addMoveToBoard("2", "X");
+        board.addMoveToBoard("3", "X");
         assertTrue(board.playerHasWon("X"));
     }
 
     @Test
     public void playerShouldWinWithThreeInACol() {
-        board.addMoveToBoard("X", "1");
-        board.addMoveToBoard("X", "4");
-        board.addMoveToBoard("X", "7");
+        board.addMoveToBoard("1", "X");
+        board.addMoveToBoard("4", "X");
+        board.addMoveToBoard("7", "X");
         assertTrue(board.playerHasWon("X"));
     }
 
     @Test
     public void playerShouldWinWithThreeInADiagonal() {
-        board.addMoveToBoard("X", "1");
-        board.addMoveToBoard("X", "5");
-        board.addMoveToBoard("X", "9");
+        board.addMoveToBoard("1", "X");
+        board.addMoveToBoard("5", "X");
+        board.addMoveToBoard("9", "X");
         assertTrue(board.playerHasWon("X"));
     }
 

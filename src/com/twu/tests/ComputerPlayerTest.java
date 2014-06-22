@@ -5,9 +5,7 @@ import com.twu.src.ComputerPlayer;
 import com.twu.src.Player;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.IOException;
-
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -29,7 +27,7 @@ public class ComputerPlayerTest {
     public void shouldTellBoardToMakeMoveAtLocation1() throws IOException {
         when(mockBoard.getFirstEmptyLocation()).thenReturn(playerInput);
         player.makeMove();
-        verify(mockBoard).addMoveToBoard(playerSymbol, playerInput);
+        verify(mockBoard).addMoveToBoard(playerInput, playerSymbol);
     }
 
 }

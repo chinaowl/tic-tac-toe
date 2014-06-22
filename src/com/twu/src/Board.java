@@ -16,11 +16,19 @@ public class Board {
     private List<String> validMoves;
     private final int maxNumberOfValidMoves = 9;
     private int validMoveCounter = 0;
+    private List<ThreeInARow> validWins;
 
     public Board(PrintStream printStream, Map<String, String> boardMap) {
         this.printStream = printStream;
         this.boardMap = boardMap;
         initializeValidMovesList();
+        initializeValidWinsList();
+    }
+
+    private void initializeValidWinsList() {
+        validWins = new ArrayList<ThreeInARow>();
+        ThreeInARow row1 = new ThreeInARow(Arrays.asList("1", "2", "3"));
+        validWins.add(row1);
     }
 
     private void initializeValidMovesList() {
@@ -44,13 +52,22 @@ public class Board {
                 " " + getBoardSymbol("7") + " | " + getBoardSymbol("8") + " | " + getBoardSymbol("9") + " \n");
     }
 
-    public boolean addMoveToBoard(String playerSymbol, String playerInput) {
-        if (validMoves.contains(playerInput) && !boardMap.containsKey(playerInput)) {
-            boardMap.put(playerInput, playerSymbol);
+    public boolean addMoveToBoard(String location, String playerSymbol) {
+        if (validMoves.contains(location) && !boardMap.containsKey(location)) {
+            boardMap.put(location, playerSymbol);
+            updateValidWinsList(location, playerSymbol);
             validMoveCounter++;
             return true;
         } else {
             return false;
+        }
+    }
+
+    private void updateValidWinsList(String location, String playerSymbol) {
+        for (ThreeInARow threeInARow : validWins) {
+            if (threeInARow.getAllLocations().contains(location)) {
+                threeInARow.setLocationAsTaken(location, playerSymbol);
+            }
         }
     }
 
@@ -59,14 +76,20 @@ public class Board {
     }
 
     public boolean playerHasWon(String playerSymbol) {
-        return checkRow("1", "2", "3", playerSymbol)
-                || checkRow("4", "5", "6", playerSymbol)
-                || checkRow("7", "8", "9", playerSymbol)
-                || checkRow("1", "4", "7", playerSymbol)
-                || checkRow("2", "5", "8", playerSymbol)
-                || checkRow("3", "6", "9", playerSymbol)
-                || checkRow("1", "5", "9", playerSymbol)
-                || checkRow("3", "5", "7", playerSymbol);
+//        return checkRow("1", "2", "3", playerSymbol)
+//                || checkRow("4", "5", "6", playerSymbol)
+//                || checkRow("7", "8", "9", playerSymbol)
+//                || checkRow("1", "4", "7", playerSymbol)
+//                || checkRow("2", "5", "8", playerSymbol)
+//                || checkRow("3", "6", "9", playerSymbol)
+//                || checkRow("1", "5", "9", playerSymbol)
+//                || checkRow("3", "5", "7", playerSymbol);
+        for (ThreeInARow threeInARow : validWins) {
+            if (threeInARow.hasWon(playerSymbol)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean checkRow(String one, String two, String three, String playerSymbol) {
