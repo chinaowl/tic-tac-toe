@@ -13,25 +13,25 @@ import static org.mockito.Mockito.when;
 
 public class TurnManagerTest {
 
-    private PrintStream printStream;
-    private Board board;
+    private PrintStream mockPrintStream;
+    private Board mockBoard;
     private TurnManager turnManager;
-    private Player player;
+    private Player mockPlayer;
 
     @Before
     public void setUp() {
-        printStream = mock(PrintStream.class);
-        board = mock(Board.class);
-        turnManager = new TurnManager(printStream, board);
-        player = mock(Player.class);
+        mockPrintStream = mock(PrintStream.class);
+        mockBoard = mock(Board.class);
+        turnManager = new TurnManager(mockPrintStream, mockBoard);
+        mockPlayer = mock(Player.class);
     }
 
     @Test
     public void shouldAskPlayerOneForMove() throws IOException {
-        when(player.getNumber()).thenReturn("One");
-        when(player.makeMove()).thenReturn(true);
-        turnManager.takeTurn(player);
-        verify(printStream).print("Player One, enter your move: ");
+        when(mockPlayer.getNumber()).thenReturn("One");
+        when(mockPlayer.makeMove()).thenReturn(true);
+        turnManager.takeTurn(mockPlayer);
+        verify(mockPrintStream).print("Player One, enter your move: ");
     }
 
 }

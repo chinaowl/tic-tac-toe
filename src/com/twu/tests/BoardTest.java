@@ -14,21 +14,21 @@ import static org.mockito.Mockito.verify;
 
 public class BoardTest {
 
-    private PrintStream printStream;
+    private PrintStream mockPrintStream;
     private Map<String, String> boardMap;
     private Board board;
 
     @Before
     public void setUp() {
-        printStream = mock(PrintStream.class);
+        mockPrintStream = mock(PrintStream.class);
         boardMap = new HashMap<String, String>();
-        board = new Board(printStream, boardMap);
+        board = new Board(mockPrintStream, boardMap);
     }
 
     @Test
     public void shouldReturnEmptyBoardString() {
         board.printBoard();
-        verify(printStream).println("   |   |   \n" +
+        verify(mockPrintStream).println("   |   |   \n" +
                 "--- --- ---\n" +
                 "   |   |   \n" +
                 "--- --- ---\n" +
@@ -39,7 +39,7 @@ public class BoardTest {
     public void shouldReturnBoardStringWithXInLocation1() {
         boardMap.put("1", "X");
         board.printBoard();
-        verify(printStream).println(" X |   |   \n" +
+        verify(mockPrintStream).println(" X |   |   \n" +
                 "--- --- ---\n" +
                 "   |   |   \n" +
                 "--- --- ---\n" +

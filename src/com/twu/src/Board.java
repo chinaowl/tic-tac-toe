@@ -1,6 +1,9 @@
 package com.twu.src;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -10,12 +13,19 @@ public class Board {
 
     private PrintStream printStream;
     private Map<String, String> boardMap;
+    private List<String> validMoves;
     private final int maxNumberOfValidMoves = 9;
     private int validMoveCounter = 0;
 
     public Board(PrintStream printStream, Map<String, String> boardMap) {
         this.printStream = printStream;
         this.boardMap = boardMap;
+        initializeValidMovesList();
+    }
+
+    private void initializeValidMovesList() {
+        String[] validMovesArray = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        validMoves = new ArrayList<String>(Arrays.asList(validMovesArray));
     }
 
     public String getBoardSymbol(String key) {
@@ -35,7 +45,7 @@ public class Board {
     }
 
     public boolean addMoveToBoard(String playerSymbol, String playerInput) {
-        if (!boardMap.containsKey(playerInput)) {
+        if (validMoves.contains(playerInput) && !boardMap.containsKey(playerInput)) {
             boardMap.put(playerInput, playerSymbol);
             validMoveCounter++;
             return true;

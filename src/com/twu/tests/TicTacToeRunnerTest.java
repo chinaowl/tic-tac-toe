@@ -15,29 +15,29 @@ import static org.mockito.Mockito.when;
 
 public class TicTacToeRunnerTest {
 
-    private PrintStream printStream;
-    private BufferedReader reader;
-    private Board board;
-    private TurnManager turnManager;
-    private Player playerOne, playerTwo;
+    private PrintStream mockPrintStream;
+    private BufferedReader mockReader;
+    private Board mockBoard;
+    private TurnManager mockTurnManager;
+    private Player mockPlayerOne, mockPlayerTwo;
     private TicTacToeRunner runner;
 
     @Before
     public void setUp() {
-        printStream = mock(PrintStream.class);
-        reader = mock(BufferedReader.class);
-        board = mock(Board.class);
-        turnManager = mock(TurnManager.class);
-        playerOne = mock(Player.class);
-        playerTwo = mock(Player.class);
-        runner = new TicTacToeRunner(printStream, board, turnManager, playerOne, playerTwo);
+        mockPrintStream = mock(PrintStream.class);
+        mockReader = mock(BufferedReader.class);
+        mockBoard = mock(Board.class);
+        mockTurnManager = mock(TurnManager.class);
+        mockPlayerOne = mock(Player.class);
+        mockPlayerTwo = mock(Player.class);
+        runner = new TicTacToeRunner(mockPrintStream, mockBoard, mockTurnManager, mockPlayerOne, mockPlayerTwo);
     }
 
     @Test
     public void shouldPrintGameIsADrawWhenLoopEnds() throws IOException {
-        when(board.isFull()).thenReturn(true);
+        when(mockBoard.isFull()).thenReturn(true);
         runner.go();
-        verify(printStream).println("Game is a draw");
+        verify(mockPrintStream).println("Game is a draw");
     }
 
 

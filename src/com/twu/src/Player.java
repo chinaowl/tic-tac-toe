@@ -22,11 +22,7 @@ public class Player {
 
     public boolean makeMove() throws IOException {
         String location = reader.readLine();
-        if (board.addMoveToBoard(symbol, location)) {
-            return true;
-        } else {
-            return false;
-        }
+        return board.addMoveToBoard(symbol, location);
     }
 
     public String getNumber() {
