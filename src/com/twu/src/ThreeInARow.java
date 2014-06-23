@@ -30,7 +30,13 @@ public class ThreeInARow {
     }
 
     public boolean isAboutToWin(String playerSymbol) {
-        return false;
+        int playerLocationCount = 0;
+        for (String location : allLocations) {
+            if (takenLocations.containsKey(location) && takenLocations.get(location).equals(playerSymbol)) {
+                playerLocationCount++;
+            }
+        }
+        return playerLocationCount == 2;
     }
 
     public List<String> getAllLocations() {
@@ -39,5 +45,14 @@ public class ThreeInARow {
 
     public void setLocationAsTaken(String location, String playerSymbol) {
         takenLocations.put(location, playerSymbol);
+    }
+
+    public String getNextWinningLocation() {
+        for (String location : allLocations) {
+            if (!takenLocations.containsKey(location)) {
+                return location;
+            }
+        }
+        return null;
     }
 }

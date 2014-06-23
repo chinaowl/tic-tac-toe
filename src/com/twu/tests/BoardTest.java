@@ -1,11 +1,12 @@
 package com.twu.tests;
 
 import com.twu.src.Board;
+import com.twu.src.ThreeInARow;
 import org.junit.Before;
 import org.junit.Test;
 import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
 import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -22,7 +23,18 @@ public class BoardTest {
     public void setUp() {
         mockPrintStream = mock(PrintStream.class);
         boardMap = new HashMap<String, String>();
-        board = new Board(mockPrintStream, boardMap);
+
+        ThreeInARow row1 = new ThreeInARow(Arrays.asList("1", "2", "3"));
+        ThreeInARow row2 = new ThreeInARow(Arrays.asList("4", "5", "6"));
+        ThreeInARow row3 = new ThreeInARow(Arrays.asList("7", "8", "9"));
+        ThreeInARow col1 = new ThreeInARow(Arrays.asList("1", "4", "7"));
+        ThreeInARow col2 = new ThreeInARow(Arrays.asList("2", "5", "8"));
+        ThreeInARow col3 = new ThreeInARow(Arrays.asList("3", "6", "9"));
+        ThreeInARow diagonal1 = new ThreeInARow(Arrays.asList("1", "5", "9"));
+        ThreeInARow diagonal2 = new ThreeInARow(Arrays.asList("3", "5", "7"));
+        List<ThreeInARow> validWins = new ArrayList<ThreeInARow>(Arrays.asList(row1, row2, row3, col1, col2, col3, diagonal1, diagonal2));
+
+        board = new Board(mockPrintStream, boardMap, validWins);
     }
 
     @Test
